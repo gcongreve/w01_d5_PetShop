@@ -34,17 +34,12 @@ def pets_by_breed(pet_shop_hash, pet_breed)
 end
 
 def find_pet_by_name(pet_shop_hash, pet_name)
-#  pet_counter = 0
   for pet in pet_shop_hash[:pets]
     if pet[:name] == pet_name
-#      pet_counter += 1
       return pet
     end
   end
   return nil
-  # if pet_counter == 0
-  #   return nil
-  # end
 end
 
 
@@ -84,4 +79,14 @@ def customer_can_afford_pet(customer, pet)
   else
     return false
   end
+end
+
+def sell_pet_to_customer(pet_shop_hash, pet, customer)
+  if find_pet_by_name(pet_shop_hash, pet) == nil
+    return "Pet not found"
+  end
+  if customer_cash(customer) < pet[:price]
+    return "insufficient funds"
+  end
+
 end
