@@ -34,14 +34,24 @@ def pets_by_breed(pet_shop_hash, pet_breed)
 end
 
 def find_pet_by_name(pet_shop_hash, pet_name)
-  pet_counter = 0
+#  pet_counter = 0
   for pet in pet_shop_hash[:pets]
     if pet[:name] == pet_name
-      pet_counter += 1
+#      pet_counter += 1
       return pet
     end
   end
-  if pet_counter == 0
-    return nil
+  return nil
+  # if pet_counter == 0
+  #   return nil
+  # end
+end
+
+
+def remove_pet_by_name(pet_shop_hash, pet_name)
+  for pet in pet_shop_hash[:pets]
+    if pet[:name] == pet_name
+      pet_shop_hash[:pets].delete(pet)
+    end
   end 
 end
