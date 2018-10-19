@@ -81,12 +81,31 @@ def customer_can_afford_pet(customer, pet)
   end
 end
 
-def sell_pet_to_customer(pet_shop_hash, pet, customer)
-  if find_pet_by_name(pet_shop_hash, pet) == nil
+def sell_pet_to_customer(pet_shop_hash, pet_name, customer)
+
+  pet = find_pet_by_name(pet_shop_hash, pet_name)
+
+  if find_pet_by_name(pet_shop_hash, pet_name) == nil
     return "Pet not found"
   end
   if customer_cash(customer) < pet[:price]
     return "insufficient funds"
   end
 
+
+  add_pet_to_customer(customer, pet_name)
+  remove_pet_by_name(pet_shop_hash, pet_name)
+  increase_pets_sold(pet_shop_hash, 1)
+  remove_customer_cash(customer, pet[:price])
 end
+
+
+#sell pet to cusomer - not found + not enough money.
+#
+# def sell_pet_to_customer(pet_shop_hash, pet, customer)
+#   if find_pet_by_name(pet_shop_hash, pet) == nil
+#     return "Pet not found"
+#   end
+#
+#
+# end
