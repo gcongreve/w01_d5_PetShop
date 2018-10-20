@@ -82,6 +82,9 @@ def customer_can_afford_pet(customer, pet)
 end
 
 def sell_pet_to_customer(pet_shop_hash, pet, customer)
+  if customer_cash(customer) < pet[:price]
+    return "insufficient funds"
+  end
 
   add_pet_to_customer(customer, pet)
   remove_customer_cash(customer, pet[:price])
@@ -92,7 +95,4 @@ end
 
 # if find_pet_by_name(pet_shop_hash, pet) == nil
 #   return "Pet not found"
-# end
-# if customer_cash(customer) < pet[:price]
-#   return "insufficient funds"
 # end
